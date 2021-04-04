@@ -23,5 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/science/example', views.get_first),
     path('api/science/example/<str:id>/', views.get_index),
-    path('api/', include(router.urls))
+    path('api/science/', include(router.urls))
 ]
