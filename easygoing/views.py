@@ -21,7 +21,7 @@ def get_first(request):
         # ]
         # data = {'projects': MyProject}
         projects = MyProject.objects.all()
-        serializer = MyProjectSerializer(projects,many=True)
+        serializer = MyProjectSerializer(projects, many=True)
         return JsonResponse(serializer.data, safe=False)
 
     elif request.method == "POST":
