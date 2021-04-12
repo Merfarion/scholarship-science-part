@@ -78,12 +78,7 @@ WSGI_APPLICATION = 'easygoing.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'science',
-        'USER':'postgres',
-        'PASSWORD': '2468',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.postgresql', 'NAME': 'defaultdb', 'USER': 'doadmin', 'PASSWORD': 'e7vmnioythuhey1g', 'HOST': 'science-do-user-9018272-0.b.db.ondigitalocean.com', 'PORT': '25060'
     }
 }
 
