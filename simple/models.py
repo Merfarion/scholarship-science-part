@@ -43,7 +43,7 @@ class Publications(models.Model):
     title = models.TextField()
     volume_title = models.TextField()
     level = models.TextField()
-    authors_quantity = models.TextField()
+    authors_quantity = models.IntegerField()
     date = models.TextField()
 
 __all__ = ['Patent', 'Scientific_Research_Work', 'Grant', 'Publications']
