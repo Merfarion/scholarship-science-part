@@ -2,27 +2,23 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-# from easygoing.simple.models import MyProject
 import json
 import psycopg2
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from simple.models import MyProject
-from simple.serializers import MyProjectSerializer
+from Scientific.models import MyProject
+from Scientific.serializers import MyProjectSerializer
+from Scientific.models import MyProject
 
 # Create your views here.
 @csrf_exempt
 def get_first(request):
     if request.method == "GET":
-        # data = [
-        # { "id": 0, "nameProject": "f1", "status": "value 2", "place": 0 },
-        # { "id": 0, "nameProject": "f1", "status": "field2", "place": 0 }
-        # ]
-        # data = {'projects': MyProject}
-        projects = MyProject.objects.all()
-        serializer = MyProjectSerializer(projects,many=True)
-        return JsonResponse(serializer.data, safe=False)
+        message_list = []
+        for p in MyProject.objects.raw('SELECT id, place, status FROM simple_myproject'):
+            message_list.append({'id': p.id, 'place': p.place, 'status': p.status})
+        return JsonResponse(test_list, safe=False)
 
     elif request.method == "POST":
         # data = {
