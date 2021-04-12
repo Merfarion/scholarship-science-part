@@ -46,5 +46,3 @@ class Publications(models.Model):
     level = models.TextField()
     authors_quantity = models.IntegerField()
     date = models.TextField()
-
-__all__ = ['Patent', 'Scientific_Research_Work', 'Grant', 'Publications']
