@@ -14,7 +14,7 @@ from Scientific.models import Scientific_Research_Work, Patent, Grant, Publicati
 
 # Create your views here.
 
-
+@csrf_exempt
 @api_view(['GET', 'POST'])
 def get_data(request):
     if request.method == 'GET':
