@@ -5,6 +5,7 @@ from django.db import models
 Название награды (приза) за результаты НИР, проводимой студентом (доклады на конференции не учитываются)
 '''
 class Scientific_Research_Work(models.Model):
+    user = models.TextField(default=1)
     title = models.TextField()
     place = models.TextField()
     individual_team = models.BooleanField()
@@ -18,6 +19,7 @@ class Scientific_Research_Work(models.Model):
 (научно-методический, научно-технический, научно-творческий) результат интеллектуальной деятельности (патент, свидетельство)
 '''
 class Patent(models.Model):
+    user = models.TextField(default=1)
     title = models.TextField()
     individual_team = models.BooleanField()
     RTU_reward = models.BooleanField()
@@ -29,6 +31,7 @@ class Patent(models.Model):
 Название гранта на выполнение НИР (только для получателей гранта, исполнители гранта не учитываются
 '''
 class Grant(models.Model):
+    user = models.TextField(default=1)
     title = models.TextField()
     individual_team = models.BooleanField()
     RTU_reward = models.BooleanField()
@@ -42,6 +45,7 @@ class Grant(models.Model):
 организации в течение 1-ого года, предшествующего назначению повышенной государственной академической стипендии
 '''
 class Publications(models.Model):
+    user = models.TextField(default=1)
     title = models.TextField()
     volume_title = models.TextField()
     level = models.TextField()
@@ -54,5 +58,5 @@ class Publications(models.Model):
 Состояние подтверждения (ссылки на пользователя и админа)
 '''
 class Confirmation_Status(models.Model):
-    user_id = models.TextField()
-    admin_id = models.TextField()
+    user = models.TextField()
+    admin = models.TextField()
