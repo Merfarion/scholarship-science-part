@@ -1,1 +1,1 @@
-web: gunicorn scholarship-science-part.wsgi
+web: gunicorn Scientific.wsgi
