@@ -25,7 +25,7 @@ SECRET_KEY = 'ovl-m31rd^6340=6uso6$ssz20#s9d5y=6w1_om5f=sqp3xu37'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['sciencebeach.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['science-cli.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
