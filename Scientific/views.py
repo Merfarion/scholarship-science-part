@@ -98,31 +98,6 @@ def add_publications(request):
         return JsonResponse({'Method': 'add_publications'})
 
 
-'''
-Need to add unique_user_id and admin validation
-'''
-@api_view(['GET', 'POST'])
-def makeRequest(request):
-    if request.method == 'POST':
-        user_id = 1
-        try:
-            add_data = {
-                "user": user_id,
-                "admin": "Request"
-            }
-            serializer = ConfirmationSerializer(data= add_data)
-            if serializer.is_valid():
-                serializer.save()
-            else:
-                raise TypeError
-            return JsonResponse({"Status": "Created"})
-        except:
-            return JsonResponse({"Status": "Error"})
-    elif request.method == "GET":
-        return JsonResponse({"Method": "makeRequest"})
-
-
-
 @api_view(['GET'])
 def showGrants(request):
     '''

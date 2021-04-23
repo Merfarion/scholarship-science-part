@@ -25,6 +25,5 @@ urlpatterns = [
     path('science/researchWorks/', views.add_researchWorks),
     path('science/patent/', views.add_patents),
     path('science/publications/', views.add_publications),
-    path('science/conform/', views.makeRequest),
     path('test/', views.showGrants),
 ]

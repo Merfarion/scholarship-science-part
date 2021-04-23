@@ -56,11 +56,3 @@ class Publications(models.Model):
     date = models.TextField()
     scores = models.IntegerField(default=-1)
     application_id = models.IntegerField()
-   
-
-'''
-Состояние подтверждения (ссылки на пользователя и админа)
-'''
-class Confirmation_Status(models.Model):
-    user = models.TextField()
-    admin = models.TextField()
