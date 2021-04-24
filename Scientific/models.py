@@ -56,3 +56,7 @@ class Publications(models.Model):
     date = models.TextField()
     scores = models.IntegerField(default=-1)
     application_id = models.IntegerField()
+
+class Data(models.Model):
+    user = models.TextField()
+    data_path = models.FilePathField(path="/documents")
