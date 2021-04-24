@@ -2,7 +2,7 @@
 
 ### Live demo on heroku
 
-https://djangoscience.herokuapp.com/
+https://djangoscience.herokuapp.co
 
 ### Mind-map for science part
 
