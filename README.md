@@ -10,4 +10,4 @@ https://djangoscience.herokuapp.com/
 
 ### UML diagram for database
 
-![UML diagram](https://media.discordapp.net/attachments/812603982106460173/832263385830916126/ScieDB.jpg)
+![UML diagram](https://sun9-19.userapi.com/impg/E6eQ-7JmyEzhk7aQJIsgcSaaItm4muAZ3WLN2A/4_SuIK1eM-M.jpg?size=821x541&quality=96&sign=e7f50e8b0dcc775b215be0b4a69d9a8c&type=album)
