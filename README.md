@@ -17,3 +17,9 @@ https://djangoscience.herokuapp.com/
 [Our UML diagram](https://github.com/IVBO-07-19/scholarship-science-part/wiki/UML-diagram-for-science-part)
 
 [And how to store custom images in a database](https://github.com/IVBO-07-19/scholarship-science-part/wiki/Storing-custom-images-in-a-database)
+
+## Используемые технологии
+PostgreSQL
+Heroku
+Django REST
+Auth0
