@@ -15,7 +15,11 @@ https://djangoscience.herokuapp.com/
 [And how to store custom images in a database](https://github.com/IVBO-07-19/scholarship-science-part/wiki/Storing-custom-images-in-a-database)
 
 ## Используемые технологии
+
 PostgreSQL :wink:
+
 Heroku :wink:
+
 Django REST :wink:
+
 Auth0 :flushed:
