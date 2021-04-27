@@ -132,4 +132,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-FILES_DIR = '/documents/'
+# remove this comment before first use
+# FILES_DIR = '/documents/'
