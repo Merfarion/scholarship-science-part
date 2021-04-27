@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Scientific',
-    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -82,7 +81,7 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': 'Scientific',
+        'NAME': 'Scientific_New',
 
         'USER': 'postgres',
 
@@ -137,3 +136,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 
+#<<<<<<< main
+#=======
+# remove this comment before first use
+# FILES_DIR = '/documents/'
+#>>>>>>> main

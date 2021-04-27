@@ -7,11 +7,12 @@ import psycopg2
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from uuid import uuid4
 from .models import *
 from .serializers import *
+from .settings import FILES_DIR
 
-
-from Scientific.models import Scientific_Research_Work, Patent, Grant, Publications
+from Scientific.models import Scientific_Research_Work, Patent, Grant, Publications, Files
 
 # Create your views here.
 
@@ -98,29 +99,27 @@ def add_publications(request):
         return JsonResponse({'Method': 'add_publications'})
 
 
-'''
-Need to add unique_user_id and admin validation
-'''
 @api_view(['GET', 'POST'])
-def makeRequest(request):
+def add_file(request):
     if request.method == 'POST':
-        user_id = 1
         try:
-            add_data = {
-                "user": user_id,
-                "admin": "Request"
-            }
-            serializer = ConfirmationSerializer(data= add_data)
-            if serializer.is_valid():
-                serializer.save()
-            else:
-                raise TypeError
-            return JsonResponse({"Status": "Created"})
+            for (file_name, f) in request.FILES.items():
+                owner = 123 # REPLACE IT
+                file_uuid = str(uuid4())
+                with open(FILES_DIR + file_uuid, 'wb+') as destination:
+                    for chunk in f.chunks():
+                        destination.write(chunk)
+                
+                db_record = Files()
+                db_record.owner = owner
+                db_record.file_name = file_name
+                db_record.file_uuid = file_uuid
+                db_record.save()
+            return JsonResponse({'UUID': file_uuid}, status=status.HTTP_201_CREATED)
         except:
-            return JsonResponse({"Status": "Error"})
-    elif request.method == "GET":
-        return JsonResponse({"Method": "makeRequest"})
-
+            return JsonResponse(status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'GET':
+        return JsonResponse({'Method': 'add_file'})
 
 
 @api_view(['GET'])
