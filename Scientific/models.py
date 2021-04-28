@@ -1,5 +1,8 @@
 from django.db import models
-
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
 
 '''
 Название награды (приза) за результаты НИР, проводимой студентом (доклады на конференции не учитываются)
@@ -74,3 +77,9 @@ class Files(models.Model):
     owner = models.TextField()
     file_uuid = models.TextField()
     file_name = models.TextField()
+
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)

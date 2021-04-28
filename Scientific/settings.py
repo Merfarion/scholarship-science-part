@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
+import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ovl-m31rd^6340=6uso6$ssz20#s9d5y=6w1_om5f=sqp3xu37'
+# SECRET_KEY = 'ovl-m31rd^6340=6uso6$ssz20#s9d5y=6w1_om5f=sqp3xu37'
+# SECRET_KEY = os.environ.get('SECRET_KEY')
+# # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['sciencebeach.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['science-cli.herokuapp.com']#, '127.0.0.1'
 
 
 # Application definition
@@ -38,8 +39,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Scientific',
-    'rest_framework'
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # <-- And here
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -82,15 +93,15 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': 'Scientific',
+        'NAME': 'science',
 
         'USER': 'postgres',
 
-        'PASSWORD': 'Zcneltyn123',
+        'PASSWORD': '2468',
 
         'HOST': 'localhost',
 
-        'PORT': '',
+        'PORT': '5432',
 
     }
 }
@@ -137,3 +148,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 
+FILES_DIR = '/documents/'
+
+django_heroku.settings(locals())

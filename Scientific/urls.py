@@ -17,8 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from . import views
+from .views import CustomAuthToken
 
 urlpatterns = [
+    path('api/users/', views.ListUsers.as_view()),
+
     path('admin/', admin.site.urls),
     path('science/', views.get_data),
     path('science/grants/', views.add_grants),
@@ -27,4 +30,6 @@ urlpatterns = [
     path('science/publications/', views.add_publications),
     path('science/upload/', views.add_file),
     path('test/', views.showGrants),
+    path('api/token/auth/', CustomAuthToken.as_view())
 ]
+
