@@ -10,7 +10,6 @@ from rest_framework.response import Response
 from uuid import uuid4
 from .models import *
 from .serializers import *
-from .settings import FILES_DIR
 
 from Scientific.models import Scientific_Research_Work, Patent, Grant, Publications, Files
 
@@ -97,29 +96,6 @@ def add_publications(request):
             return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'GET':
         return JsonResponse({'Method': 'add_publications'})
-
-
-@api_view(['GET', 'POST'])
-def add_file(request):
-    if request.method == 'POST':
-        try:
-            for (file_name, f) in request.FILES.items():
-                owner = 123 # REPLACE IT
-                file_uuid = str(uuid4())
-                with open(FILES_DIR + file_uuid, 'wb+') as destination:
-                    for chunk in f.chunks():
-                        destination.write(chunk)
-                
-                db_record = Files()
-                db_record.owner = owner
-                db_record.file_name = file_name
-                db_record.file_uuid = file_uuid
-                db_record.save()
-            return JsonResponse({'UUID': file_uuid}, status=status.HTTP_201_CREATED)
-        except:
-            return JsonResponse(status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'GET':
-        return JsonResponse({'Method': 'add_file'})
 
 
 @api_view(['GET'])
