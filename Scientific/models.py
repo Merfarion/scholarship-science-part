@@ -33,7 +33,6 @@ class Scientific_Research_Work(models.Model):
     date = models.TextField()
     scores = models.IntegerField(default=-1)
     application_id = models.IntegerField()
-    files = models.TextField() # JSON Array of attached files
 
 
 '''
@@ -48,7 +47,6 @@ class Patent(models.Model):
     date = models.TextField()
     scores = models.IntegerField(default=-1)
     application_id = models.IntegerField()
-    files = models.TextField() # JSON Array of attached files
 
 
 '''
@@ -62,7 +60,6 @@ class Grant(models.Model):
     date = models.TextField()
     scores = models.IntegerField(default=-1)
     application_id = models.IntegerField()
-    files = models.TextField() # JSON Array of attached files
 
 
 '''
@@ -79,7 +76,6 @@ class Publications(models.Model):
     date = models.TextField()
     scores = models.IntegerField(default=-1)
     application_id = models.IntegerField()
-    files = models.TextField() # JSON Array of attached files
 
 
 '''
@@ -87,10 +83,8 @@ class Publications(models.Model):
 Краткое описание структуры:
 id          - Primary Key
 owner       - ID владельца файла
-file_uuid   - UUID файла. Имя файла в файловой системе
-file_name   - Оригинальное имя файла с расширением
+file_link - Ссылка на файл
 '''
 class Files(models.Model):
     owner = models.TextField()
-    file_uuid = models.TextField()
-    file_name = models.TextField()
+    file_link = models.TextField()

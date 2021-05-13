@@ -38,32 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Scientific',
-    'rest_framework',
 ]
-
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ),
-}
-
-
-JWT_AUTH = {
-    'JWT_PAYLOAD_GET_USERNAME_HANDLER':
-        'auth0authorization.utils.jwt_get_username_from_payload_handler',
-    'JWT_DECODE_HANDLER':
-        'auth0authorization.utils.jwt_decode_token',
-    'JWT_ALGORITHM': 'RS256',
-    'JWT_AUDIENCE': 'https://djangoscience.herokuapp.com/api',
-    'JWT_ISSUER': 'https://dev-vms3c2vm.eu.auth0.com/',
-    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
-}
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,17 +49,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.RemoteUserMiddleware',
 ]
-
-
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'django.contrib.auth.backends.RemoteUserBackend',
-]
-
 
 ROOT_URLCONF = 'Scientific.urls'
 
@@ -113,29 +78,17 @@ WSGI_APPLICATION = 'Scientific.wsgi.application'
 DATABASES = {
     'default': {
 
-        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        #
-        # 'NAME': 'Scientific_New',
-        #
-        # 'USER': 'postgres',
-        #
-        # 'PASSWORD': 'Zcneltyn123',
-        #
-        # 'HOST': 'localhost',
-        #
-        # 'PORT': '',
-
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': 'sciences',
+        'NAME': 'Scientific_New',
 
         'USER': 'postgres',
 
-        'PASSWORD': '2468',
+        'PASSWORD': 'Zcneltyn123',
 
         'HOST': 'localhost',
 
-        'PORT': '5432',
+        'PORT': '',
 
     }
 }
