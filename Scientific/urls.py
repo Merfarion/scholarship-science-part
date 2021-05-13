@@ -17,11 +17,19 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from . import views
-from .views import CustomAuthToken
+from rest_framework.routers import DefaultRouter
+
+
+router = DefaultRouter()
+router.register(r'scientific', views.ScientificViewset)
+
 
 urlpatterns = [
-    path('api/users/', views.ListUsers.as_view()),
-
+    path('', include(router.urls)),
+    path('admin/', admin.site.urls),
+    path('api/public', views.public),
+    path('api/private', views.private),
+    path('api/private-scoped', views.private_scoped),
     path('admin/', admin.site.urls),
     path('science/', views.get_data),
     path('science/grants/', views.add_grants),
@@ -30,6 +38,4 @@ urlpatterns = [
     path('science/publications/', views.add_publications),
     path('science/upload/', views.add_file),
     path('test/', views.showGrants),
-    path('api/token/auth/', CustomAuthToken.as_view())
 ]
-

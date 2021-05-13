@@ -9,8 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-import os
-import django_heroku
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'ovl-m31rd^6340=6uso6$ssz20#s9d5y=6w1_om5f=sqp3xu37'
-# SECRET_KEY = os.environ.get('SECRET_KEY')
-# # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+SECRET_KEY = 'ovl-m31rd^6340=6uso6$ssz20#s9d5y=6w1_om5f=sqp3xu37'
 
-ALLOWED_HOSTS = ['science-cli.herokuapp.com']#, '127.0.0.1'
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -40,17 +39,31 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Scientific',
     'rest_framework',
-    'rest_framework.authtoken',
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',  # <-- And here
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
+    'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
 }
+
+
+JWT_AUTH = {
+    'JWT_PAYLOAD_GET_USERNAME_HANDLER':
+        'auth0authorization.utils.jwt_get_username_from_payload_handler',
+    'JWT_DECODE_HANDLER':
+        'auth0authorization.utils.jwt_decode_token',
+    'JWT_ALGORITHM': 'RS256',
+    'JWT_AUDIENCE': 'https://djangoscience.herokuapp.com/api',
+    'JWT_ISSUER': 'https://dev-vms3c2vm.eu.auth0.com/',
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -61,8 +74,17 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.RemoteUserMiddleware',
 ]
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'django.contrib.auth.backends.RemoteUserBackend',
+]
+
 
 ROOT_URLCONF = 'Scientific.urls'
 
@@ -91,9 +113,21 @@ WSGI_APPLICATION = 'Scientific.wsgi.application'
 DATABASES = {
     'default': {
 
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #
+        # 'NAME': 'Scientific_New',
+        #
+        # 'USER': 'postgres',
+        #
+        # 'PASSWORD': 'Zcneltyn123',
+        #
+        # 'HOST': 'localhost',
+        #
+        # 'PORT': '',
+
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': 'science',
+        'NAME': 'sciences',
 
         'USER': 'postgres',
 
@@ -143,11 +177,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 STATIC_URL = '/static/'
 
 FILES_DIR = '/documents/'
-
-django_heroku.settings(locals())
