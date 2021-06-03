@@ -1,4 +1,24 @@
 from django.db import models
+from django.utils import timezone
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model()
+
+
+class Scientific(models.Model):
+    title = models.TextField()
+    date = models.DateField(default=timezone.now())
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+
+class CustomUser(models.Model):
+    name = models.TextField(max_length=300, default='')
+    superuser = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=True)
 
 
 '''

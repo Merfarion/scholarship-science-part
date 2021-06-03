@@ -24,3 +24,10 @@ class PublicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Publications
         fields = '__all__'
+
+
+class ScientificSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        fields = '__all__'
+        model = Scientific

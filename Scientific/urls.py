@@ -17,8 +17,19 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from . import views
+from rest_framework.routers import DefaultRouter
+
+
+router = DefaultRouter()
+router.register(r'scientific', views.ScientificViewset)
+
 
 urlpatterns = [
+    path('', include(router.urls)),
+    path('admin/', admin.site.urls),
+    path('api/public', views.public),
+    path('api/private', views.private),
+    path('api/private-scoped', views.private_scoped),
     path('admin/', admin.site.urls),
     path('science/', views.get_data),
     path('science/grants/', views.add_grants),
